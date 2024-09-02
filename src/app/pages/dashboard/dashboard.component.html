@@ -1,0 +1,42 @@
+<app-admin-layout>
+  <h1 class="text-3xl font-medium mx-8 my-8">Hey, Nombre</h1>
+
+  <div class="flex flex-wrap">
+    <div class="mx-8 w-full md:flex">
+      <!-- Chart -->
+      <div class="mb-12 md:w-8/12 md:mr-8 lg:mr-12 xl:mr-16">
+        <div class=" h-60 w-full bg-neutral-300 rounded-3xl"></div>
+        <p class="mt-5">Weekly work</p>
+      </div>
+
+      <!-- Calendar -->
+      <div class="mb-12 md:w-4/12">
+        <div class="h-60 w-full bg-neutral-300 rounded-3xl"></div>
+        <p class="mt-5">Pending tasks this month</p>
+      </div>
+    </div>
+
+    <div class="mx-8 w-full">
+      <h3 class="text-2xl font-medium my-8">Urgent tasks</h3>
+      <!-- <div class="md:flex">
+        <div class="h-32 w-1/3 bg-neutral-300 rounded-3xl mb-12 md:mr-8 lg:mr-12 xl:mr-16"></div>
+        <div class="h-32 w-1/3 bg-neutral-300 rounded-3xl mb-12 md:mr-8 lg:mr-12 xl:mr-16"></div>
+        <div class="h-32 w-1/3 bg-neutral-300 rounded-3xl mb-12"></div>
+      </div> -->
+
+      <p-carousel
+        [value]="products"
+        [numVisible]="3"
+        [numScroll]="3"
+        [circular]="false"
+        [responsiveOptions]="responsiveOptions">
+          <ng-template let-product pTemplate="item">
+            <!-- Add task card -->
+            <div>
+              {{ product.name }}
+            </div>
+          </ng-template>
+    </p-carousel>
+    </div>
+  </div>
+</app-admin-layout>

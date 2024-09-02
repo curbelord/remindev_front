@@ -1,0 +1,7 @@
+#container_admin_layout{
+  grid-template-rows: repeat(2, auto);
+}
+
+main{
+  height: calc(100vh - 90px);
+}

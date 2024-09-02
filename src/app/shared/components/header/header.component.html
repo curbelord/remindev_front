@@ -1,0 +1,63 @@
+<header class="flex justify-between items-center mx-4 py-3 md:mx-12 lg:mx-20">
+  <div class="flex justify-between w-6/12 md:justify-normal xl:w-3/12">
+    <div class="flex items-center justify-center bg-gray-100 size-12 rounded-lg md:mr-8" (click)="manageMenu()">
+      <i class="pi pi-bars text-gray-400 text-2xl"></i>
+    </div>
+
+    <div class="flex items-center">
+      <a routerLink="/">
+        <img class="md:hidden" src="/assets/img/logo_remindev_movil.svg" height="48px" width="48px">
+        <img class="hidden md:inline" src="/assets/img/logo_remindev.svg" width="200px">
+      </a>
+    </div>
+  </div>
+
+  <div class="hidden xl:flex justify-center xl:w-6/12">
+    <p-breadcrumb class="max-w-full" [model]="breadCrumbItems">
+      <ng-template pTemplate="item" let-item>
+        <ng-container>
+          <a [routerLink]="item.route" class="p-menuitem-link">
+            @if (item.active) {
+              <span class="text-emerald-400 font-bold">{{ item.label }}</span>
+            }@else {
+              <span>{{ item.label }}</span>
+            }
+          </a>
+        </ng-container>
+      </ng-template>
+    </p-breadcrumb>
+  </div>
+
+  <div class="flex justify-end items-center w-6/12 xl:w-3/12">
+    <i [class]="'pi pi-' + theme[0] + ' text-gray-500 text-2xl mr-4 hover:cursor-pointer !hidden lg:!block'" (click)="changeTheme()"></i>
+    @if (notifications > 0) {
+      <a routerLink="">
+        <i class="pi pi-bell text-gray-500 text-2xl mr-6 hover:cursor-pointer !hidden lg:!block" pBadge [value]="notifications" severity="danger"></i>
+      </a>
+    }@else {
+      <a routerLink="">
+        <i class="pi pi-bell text-gray-500 text-2xl mr-6 hover:cursor-pointer !hidden lg:!block"></i>
+      </a>
+    }
+
+
+    <p-avatar
+      styleClass="-mr-2"
+      label="D"
+      size="large"
+      shape="circle" />
+
+    <p-splitButton
+      class="focus:ring-2 ring-emerald-500"
+      styleClass="items-center hidden lg:flex"
+      label=""
+      size="small"
+      [model]="getAvatarItemsToSplitterPC()" />
+
+    <p-splitButton
+      styleClass="flex items-center lg:hidden"
+      label=""
+      size="small"
+      [model]="avatarItems" />
+  </div>
+</header>

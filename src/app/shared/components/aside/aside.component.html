@@ -1,0 +1,24 @@
+<aside class="flex flex-wrap mx-4 bg-emerald-200 rounded-3xl p-4">
+  <ol class="w-full self-start">
+    @for (button of menuButtons; track button.id) {
+      <li>
+        <!-- <button
+          pButton
+          type="button"
+          [class]="'text-white bg-emerald-500 ' + (button.id == 1 ? 'mt-0' : 'mt-3') + ' w-full rounded-md px-3 py-2'">
+          {{ button.name }}
+        </button> -->
+        <a [routerLink]="button.route" [class]="'block text-white bg-emerald-500 ' + (button.id == 1 ? 'mt-0' : 'mt-3') + ' w-full rounded-md px-3 py-2 hover:cursor-pointer'">{{ button.name }}</a>
+      </li>
+    }
+  </ol>
+
+  <div class="flex self-end">
+    <a href="https://github.com/curbelord" target="_blank">
+      <img src="/assets/img/github.svg" alt="Github logo with link to @curbelord" width="40px" height="40px">
+    </a>
+    <a href="www.linkedin.com/in/diego-curbelo-rodríguez-554431310" target="_blank" class="ml-3">
+      <img src="/assets/img/linkedin.svg" alt="Linkedin logo with link to the profile of Diego Curbelo Rodríguez" width="40px" height="40px">
+    </a>
+  </div>
+</aside>
