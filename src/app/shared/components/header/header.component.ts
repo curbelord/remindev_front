@@ -1,10 +1,11 @@
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { BadgeModule } from 'primeng/badge';
 import { RouterLink, RouterModule } from '@angular/router';
+import { UiService } from '../../../core/services/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,33 @@ import { RouterLink, RouterModule } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  manageMenu = () => {
+  private _uiService = inject(UiService);
+  originalMainWidth: number | null = null;
 
+  manageMenu = (): void => {
+    let isMenuOpen: boolean = this._uiService.menuOpen;
+    let asideMenu: HTMLElement = document.getElementsByTagName("aside")[0];
+
+    if (isMenuOpen){
+      this._uiService.menuOpen = false;
+      asideMenu.classList.toggle("open_menu");
+      !this._uiService.isMobile ? this.moveMainToLeft(-asideMenu.clientWidth, asideMenu.clientWidth) : false;
+
+    } else {
+      this._uiService.menuOpen = true;
+      asideMenu.classList.toggle("open_menu");
+      !this._uiService.isMobile ? this.moveMainToLeft(0, 0) : false;
+    }
+  }
+
+  moveMainToLeft = (pxToTranslate: number, asideWidth: number): void => {
+    let main: HTMLElement = document.getElementsByTagName("main")[0];
+    main.style.transform = `translateX(${pxToTranslate}px)`;
+
+    if (this.originalMainWidth === null) {
+      this.originalMainWidth = main.clientWidth;
+    }
+    main.style.width = `${this.originalMainWidth + asideWidth}px`;
   }
 
   getAvatarItemsToSplitterPC = (): MenuItem[] => {

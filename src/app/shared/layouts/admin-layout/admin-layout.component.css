@@ -4,4 +4,5 @@
 
 main{
   height: calc(100vh - 90px);
+  transition: all 800ms cubic-bezier(.8, 0, .33, 1);
 }

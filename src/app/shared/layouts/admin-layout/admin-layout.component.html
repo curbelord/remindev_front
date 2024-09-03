@@ -1,8 +1,8 @@
 <div id="container_admin_layout" class="grid grid-cols-12 box-border">
   <app-header class="col-start-1 col-end-13 row-start-1 row-end-2 h-20" />
-  <app-aside class="col-start-1 col-end-8 row-start-2 row-end-3 md:col-end-6 lg:col-end-3 z-50" />
+  <app-aside id="aside_container" class="w-full col-start-1 col-end-8 row-start-2 row-end-3 md:col-end-6 lg:col-end-3 z-50 relative" />
 
-  <main class="col-start-1 col-end-13 row-start-2 row-end-3 lg:col-start-3 lg:col-end-13 pb-2 bg-stone-50 h-full w-full lg:rounded-3xl overflow-auto">
+  <main class="col-start-1 col-end-13 row-start-2 row-end-3 lg:col-start-3 lg:col-end-13 pb-2 bg-stone-50 h-full  lg:rounded-3xl lg:mx-4 overflow-auto">
     <ng-content></ng-content>
   </main>
 </div>
