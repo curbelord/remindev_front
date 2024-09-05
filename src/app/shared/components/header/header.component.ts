@@ -35,7 +35,6 @@ export class HeaderComponent {
     }
 
     this._uiService.menuOpen = !this._uiService.menuOpen;
-    console.log(this._uiService.menuOpen);
   }
 
   moveMainToLeft = (mainElement: HTMLElement, pxToTranslate: number, asideWidth: number): void => {

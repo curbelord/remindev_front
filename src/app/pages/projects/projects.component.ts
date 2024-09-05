@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { AdminLayoutComponent } from '../../shared/layouts/admin-layout/admin-layout.component';
 import { ProjectComponent } from '../../shared/components/project/project.component';
+import { TopRightOptionsComponent } from '../../shared/components/top-right-options/top-right-options.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [AdminLayoutComponent, ProjectComponent],
+  imports: [ProjectComponent, TopRightOptionsComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })

@@ -5,6 +5,7 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ProjectComponent } from './pages/project/project.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,11 @@ export const routes: Routes = [
     path: 'projects',
     title: 'Remindev | Projects',
     component: ProjectsComponent
+  },
+  {
+    path: 'projects/:id',
+    title: 'Remindev | ',
+    component: ProjectComponent
   },
   {
     path: 'teams',

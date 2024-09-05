@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminLayoutComponent } from '../../shared/layouts/admin-layout/admin-layout.component';
 import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [AdminLayoutComponent, CarouselModule],
+  imports: [CarouselModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

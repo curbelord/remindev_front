@@ -1,0 +1,7 @@
+<div [class]="'flex flex-wrap md:flex-nowrap gap-5 mx-8 mb-10 py-3 px-5 bg-' + backgroundColor() + ' w-fit rounded-2xl lg:mb-0'">
+  @for (icon of icons; track icon.id) {
+    @if (icon.class === iconsToPrint()[icon.id]) {
+      <i [class]="'pi pi-' + (icon.class) + ' text-xl hover:cursor-pointer'"></i>
+    }
+  }
+</div>

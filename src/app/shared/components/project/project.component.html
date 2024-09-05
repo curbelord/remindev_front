@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <a [href]="id()" class="flex items-end self-end w-full h-full pb-5 mt-[-52px] rounded-2xl">
+  <a [routerLink]="['/projects', id()]" class="flex items-end self-end w-full h-full pb-5 mt-[-52px] rounded-2xl">
     <div class="px-6">
       <h3 class="text-lg font-medium mb-1">{{ name() }}</h3>
       <p class="text-sm">{{ endDate() }}</p>
