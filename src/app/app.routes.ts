@@ -14,7 +14,7 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    title: 'Remindev | Dashboard',
+    title: 'Remindev | Projects',
     component: ProjectsComponent
   },
   {

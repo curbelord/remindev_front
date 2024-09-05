@@ -21,27 +21,34 @@ export class HeaderComponent {
   manageMenu = (): void => {
     let isMenuOpen: boolean = this._uiService.menuOpen;
     let asideMenu: HTMLElement = document.getElementsByTagName("aside")[0];
+    let main: HTMLElement = document.getElementsByTagName("main")[0];
 
     if (isMenuOpen){
-      this._uiService.menuOpen = false;
       asideMenu.classList.toggle("open_menu");
-      !this._uiService.isMobile ? this.moveMainToLeft(-asideMenu.clientWidth, asideMenu.clientWidth) : false;
+      !this._uiService.isMobile ? this.moveMainToLeft(main, -asideMenu.clientWidth, asideMenu.clientWidth) : false;
+      this._uiService.isMobile ? setTimeout(this.sendMainToFrontOrBack, 800, main, 50) : false;
 
     } else {
-      this._uiService.menuOpen = true;
       asideMenu.classList.toggle("open_menu");
-      !this._uiService.isMobile ? this.moveMainToLeft(0, 0) : false;
+      !this._uiService.isMobile ? this.moveMainToLeft(main, 0, 0) : false;
+      this.sendMainToFrontOrBack(main, 50);
     }
+
+    this._uiService.menuOpen = !this._uiService.menuOpen;
+    console.log(this._uiService.menuOpen);
   }
 
-  moveMainToLeft = (pxToTranslate: number, asideWidth: number): void => {
-    let main: HTMLElement = document.getElementsByTagName("main")[0];
-    main.style.transform = `translateX(${pxToTranslate}px)`;
+  moveMainToLeft = (mainElement: HTMLElement, pxToTranslate: number, asideWidth: number): void => {
+    mainElement.style.transform = `translateX(${pxToTranslate}px)`;
 
     if (this.originalMainWidth === null) {
-      this.originalMainWidth = main.clientWidth;
+      this.originalMainWidth = mainElement.clientWidth;
     }
-    main.style.width = `${this.originalMainWidth + asideWidth}px`;
+    mainElement.style.width = `${this.originalMainWidth + asideWidth}px`;
+  }
+
+  sendMainToFrontOrBack = (mainElement: HTMLElement, zIndex: number) => {
+    mainElement.classList.toggle("z-50");
   }
 
   getAvatarItemsToSplitterPC = (): MenuItem[] => {
