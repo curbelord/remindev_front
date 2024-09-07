@@ -8,6 +8,6 @@ export class UiService {
 
   // Get device type with Express
 
-  isMobile: boolean = false;
+  isMobile: boolean = true;
   menuOpen: boolean = !this.isMobile;
 }

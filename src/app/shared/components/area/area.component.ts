@@ -16,4 +16,5 @@ export class AreaComponent {
 
   id = input.required<number>();
   name = input.required<string>();
+  projectId = input.required<number | null>();
 }

@@ -5,7 +5,8 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { ProjectComponent } from './pages/project/project.component';
+import { ProjectComponent } from './pages/projects/project/project.component';
+import { AreaComponent } from './pages/projects/project/area/area.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
     path: 'projects/:id',
     title: 'Remindev | ',
     component: ProjectComponent
+  },
+  {
+    path: 'projects/:id/:id',
+    title: 'Remindev | ',
+    component: AreaComponent
   },
   {
     path: 'teams',

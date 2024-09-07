@@ -6,9 +6,9 @@
     </div>
   </div>
 
-  <a [href]="id()" class="flex items-end self-end w-full h-full pb-5 mt-[-52px] rounded-2xl">
+  <a [routerLink]="['/projects/', projectId(), id()]" class="flex items-end self-end w-full h-full pb-5 mt-[-52px] rounded-2xl">
     <div class="px-6">
-      <h3 class="text-lg font-medium">{{ name() }}</h3>
+      <h3 class="text-lg font-medium line-clamp-1 md:text-xl">{{ name() }}</h3>
     </div>
   </a>
 </div>

@@ -1,9 +1,9 @@
 <div class="flex flex-wrap lg:flex-nowrap lg:items-center">
-  <h1 class="text-2xl md:text-3xl font-medium mx-8 mt-8 mb-4 lg:mb-8 w-full">Projects</h1>
+  <h1 class="text-2xl md:text-3xl font-medium mx-4 mt-8 mb-4 sm:mx-8 lg:mb-8 w-full">Projects</h1>
   <app-top-right-options [iconsToPrint]="['plus', 'filter']" backgroundColor="white" />
 </div>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-8">
+<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-4 sm:mx-8">
   @for (project of projects; track project.id) {
     <app-project [id]="project.id" [name]="project.name" [endDate]="project.endDate" />
   }
