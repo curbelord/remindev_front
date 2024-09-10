@@ -7,8 +7,14 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectComponent } from './pages/projects/project/project.component';
 import { AreaComponent } from './pages/projects/project/area/area.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    title: 'Remindev | Login',
+    component: LoginComponent
+  },
   {
     path: 'dashboard',
     title: 'Remindev | Dashboard',

@@ -1,0 +1,57 @@
+<div class="mx-4 px-3 py-8 mt-8 rounded-3xl bg-stone-100 sm:mx-8 md:max-w-[500px] md:mx-auto md:p-12 lg:max-w-[600px] lg:p-20">
+  <h1 class="text-2xl font-medium md:text-3xl mx-4 mb-10 md:mb-16">Login</h1>
+  <form [formGroup]="loginForm" method="post" action="" class="flex flex-wrap mx-4">
+    <label [for]="inputTypes[0]" class="md:text-lg mb-2 w-full">Email</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputTypes[0]"
+      [name]="inputTypes[0]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="email" />
+
+    @if (loginForm.get('email')?.invalid && loginForm.get('email')?.dirty) {
+      <div id="emailError" class="mt-6 p-2 text-red-500 bg-red-100 rounded-lg w-full">
+        <p class="first-letter:capitalize">
+          @if (loginForm.get('email')?.hasError('required')) {
+            {{ inputTypes[0] + " " + errorMessages[0] }}
+          }@else if (loginForm.get('email')?.hasError('pattern')) {
+            {{ inputTypes[0] + " " + errorMessages[1] + errorMessages[2] }}
+          }
+        </p>
+      </div>
+    }
+
+    <label [for]="inputTypes[1]" class="md:text-lg mt-6 mb-2 w-full">Password</label>
+    <input
+      [type]="inputTypes[1]"
+      [id]="inputTypes[1]"
+      [name]="inputTypes[1]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="password" />
+
+    @if (loginForm.get('password')?.invalid && loginForm.get('password')?.dirty) {
+      <div id="passwordError" class="mt-6 p-2 text-red-500 bg-red-100 rounded-lg w-full">
+        <p class="first-letter:capitalize">
+          @if (loginForm.get('password')?.hasError('required')) {
+            {{ inputTypes[1] + " " + errorMessages[0] }}
+          }@else if (loginForm.get('password')?.hasError('pattern')) {
+            {{ inputTypes[1] + " " + errorMessages[1] + errorMessages[3] }}
+          }
+        </p>
+      </div>
+    }
+
+    @if (error) {
+      <div id="errors" class="hidden mt-6 p-2 text-red-500 bg-red-100 rounded-lg w-full">
+        {{ error }}
+      </div>
+    }
+
+    <button type="submit" id="sign_in" class="mt-6 py-2 px-2 outline-none text-white bg-emerald-500 focus:ring-2 ring-emerald-200 rounded-lg w-full md:text-lg">Sign in</button>
+
+    <div class="text-center w-full mt-8">
+      <span class="block md:text-lg">Now here?</span>
+      <a routerLink="/register" class="block text-emerald-400 hover:cursor-pointer md:text-lg">Create account</a>
+    </div>
+  </form>
+</div>
