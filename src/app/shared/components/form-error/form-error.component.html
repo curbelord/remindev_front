@@ -1,0 +1,14 @@
+@if (form().get(inputName())?.invalid && form().get(inputName())?.dirty || form().get(inputName())?.hasError('passwordMismatch')) {
+  <div [id]="inputName() + 'Error'" class="mt-6 p-2 text-red-500 bg-red-100 rounded-lg w-full">
+    <p class="first-letter:capitalize">
+      @if (requiredError() && form().get(inputName())?.hasError('required')) {
+        {{ requiredError() }}
+      }@else if (patternError() && form().get(inputName())?.hasError('pattern')) {
+        {{ patternError() }}
+      }
+      @if (form().get(inputName())?.hasError('passwordMismatch')) {
+        You must enter the same password
+      }
+    </p>
+  </div>
+}

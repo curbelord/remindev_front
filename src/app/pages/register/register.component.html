@@ -1,0 +1,105 @@
+<div class="mx-4 px-3 py-8 mt-8 rounded-3xl bg-stone-100 sm:mx-8 md:max-w-[500px] md:mx-auto md:p-12 lg:max-w-[600px] lg:p-20">
+  <h1 class="text-2xl font-medium md:text-3xl mx-4 mb-10 md:mb-16">Register</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="sendRegisterForm()" method="post" action="" class="flex flex-wrap mx-4">
+    <label [for]="inputAttrs[0]" class="md:text-lg mb-2 w-full">Name</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputAttrs[0]"
+      formControlName="name"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[0]['pattern']" [inputName]="inputAttrs[0]" />
+
+    <label [for]="inputAttrs[1]" class="md:text-lg mt-6 mb-2 w-full">Surname</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputAttrs[1]"
+      [name]="inputAttrs[1]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="surname" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[1]['pattern']" [inputName]="inputAttrs[1]" />
+
+    <label [for]="inputAttrs[2]" class="md:text-lg mt-6 mb-2 w-full">Birthdate</label>
+    <p-calendar
+      [maxDate]="maxBirthdate"
+      [minDate]="minBirthdate"
+      [defaultDate]="maxBirthdate"
+      dateFormat="dd/mm/yy"
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      [inputId]="inputAttrs[2]"
+      [name]="inputAttrs[2]"
+      formControlName="birthdate"
+      class="w-full" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[2]['pattern']" [inputName]="inputAttrs[2]" />
+
+    <label [for]="inputAttrs[3]" class="md:text-lg mt-6 mb-2 w-full">Nick</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputAttrs[3]"
+      [name]="inputAttrs[3]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="nick" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[3]['pattern']" [inputName]="inputAttrs[3]" />
+
+    <label [for]="inputAttrs[4]" class="md:text-lg mt-6 mb-2 w-full">Company</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputAttrs[4]"
+      [name]="inputAttrs[4]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="company" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[4]['pattern']" [inputName]="inputAttrs[4]" />
+
+    <label [for]="inputAttrs[5]" class="md:text-lg mt-6 mb-2 w-full">Occupation</label>
+    <input
+      [type]="inputTypes[0]"
+      [id]="inputAttrs[5]"
+      [name]="inputAttrs[5]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="occupation" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[5]['pattern']" [inputName]="inputAttrs[5]" />
+
+    <label [for]="inputAttrs[6]" class="md:text-lg mt-6 mb-2 w-full">Email</label>
+    <input
+      [type]="inputTypes[2]"
+      [id]="inputAttrs[6]"
+      [name]="inputAttrs[6]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="email" />
+
+    <app-form-error [form]="registerForm" [patternError]="inputErrors[6]['pattern']" [inputName]="inputAttrs[6]" />
+
+    <label [for]="inputAttrs[7]" class="md:text-lg mt-6 mb-2 w-full">Password</label>
+    <input
+      [type]="inputTypes[3]"
+      [id]="inputAttrs[7]"
+      [name]="inputAttrs[7]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="password" />
+
+    <app-form-error [form]="registerForm" [requiredError]="inputErrors[7]['required']" [patternError]="inputErrors[7]['pattern']" [inputName]="inputAttrs[7]" />
+
+    <label [for]="inputAttrs[8]" class="md:text-lg mt-6 mb-2 w-full">Re-enter your password</label>
+    <input
+      [type]="inputTypes[3]"
+      [id]="inputAttrs[8]"
+      [name]="inputAttrs[8]"
+      class="py-2 px-2 outline-none focus:ring-2 ring-emerald-400 rounded-lg w-full"
+      formControlName="rePassword" />
+
+    <app-form-error [form]="registerForm" [requiredError]="inputErrors[7]['required']" [patternError]="inputErrors[7]['pattern']" [inputName]="inputAttrs[8]" />
+
+    <button type="submit" id="sign_in" class="mt-6 py-2 px-2 outline-none text-white bg-emerald-500 focus:ring-2 ring-emerald-200 rounded-lg w-full md:text-lg">Sign up</button>
+  </form>
+
+  <div class="text-center w-full mt-8">
+    <span class="block md:text-lg">Already have an account?</span>
+    <a routerLink="/login" class="block text-emerald-400 hover:cursor-pointer md:text-lg">Sign in</a>
+  </div>
+</div>

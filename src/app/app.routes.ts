@@ -8,12 +8,18 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectComponent } from './pages/projects/project/project.component';
 import { AreaComponent } from './pages/projects/project/area/area.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
   {
     path: 'login',
     title: 'Remindev | Login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    title: 'Remindev | Register',
+    component: RegisterComponent
   },
   {
     path: 'dashboard',
