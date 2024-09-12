@@ -7,7 +7,7 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[0]"
         formControlName="name"
-        [class]="'input ' + (registerForm.get('name')?.dirty ? (registerForm.get('name')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')" />
+        [class]="'input input_padding ' + (registerForm.get('name')?.dirty ? (registerForm.get('name')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[0]['required']" [patternError]="inputErrors[0]['pattern']" [inputName]="inputAttrs[0]" />
 
@@ -16,7 +16,7 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[1]"
         [name]="inputAttrs[1]"
-        [class]="'input ' + (registerForm.get('surname')?.dirty ? (registerForm.get('surname')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('surname')?.dirty ? (registerForm.get('surname')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="surname" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[1]['required']" [patternError]="inputErrors[1]['pattern']" [inputName]="inputAttrs[1]" />
@@ -32,7 +32,7 @@
         [inputId]="inputAttrs[2]"
         [name]="inputAttrs[2]"
         formControlName="birthdate"
-        [class]="'form_calendar ' + (registerForm.get('birthdate')?.dirty ? (registerForm.get('birthdate')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')" />
+        [class]="'input ' + (registerForm.get('birthdate')?.dirty ? (registerForm.get('birthdate')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[2]['required']" [patternError]="inputErrors[2]['pattern']" [inputName]="inputAttrs[2]" />
 
@@ -41,7 +41,7 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[3]"
         [name]="inputAttrs[3]"
-        [class]="'input ' + (registerForm.get('nick')?.dirty ? (registerForm.get('nick')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('nick')?.dirty ? (registerForm.get('nick')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="nick" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[3]['required']" [patternError]="inputErrors[3]['pattern']" [inputName]="inputAttrs[3]" />
@@ -51,7 +51,7 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[4]"
         [name]="inputAttrs[4]"
-        [class]="'input ' + (registerForm.get('company')?.dirty ? (registerForm.get('company')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('company')?.dirty ? (registerForm.get('company')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="company" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[4]['required']" [patternError]="inputErrors[4]['pattern']" [inputName]="inputAttrs[4]" />
@@ -61,7 +61,7 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[5]"
         [name]="inputAttrs[5]"
-        [class]="'input ' + (registerForm.get('occupation')?.dirty ? (registerForm.get('occupation')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('occupation')?.dirty ? (registerForm.get('occupation')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="occupation" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[5]['required']" [patternError]="inputErrors[5]['pattern']" [inputName]="inputAttrs[5]" />
@@ -71,18 +71,18 @@
         [type]="inputTypes[2]"
         [id]="inputAttrs[6]"
         [name]="inputAttrs[6]"
-        [class]="'input ' + (registerForm.get('email')?.dirty ? (registerForm.get('email')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('email')?.dirty ? (registerForm.get('email')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="email" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[6]['required']" [patternError]="inputErrors[6]['pattern']" [inputName]="inputAttrs[6]" />
     }
 
-    <label [for]="inputAttrs[7]" class="md:text-lg mt-6 mb-2 w-full">Password</label>
+    <label [for]="inputAttrs[7]" [class]="'md:text-lg ' + (registerForm.get('fullRegistration')?.value ? 'mt-6' : '') + ' mb-2 w-full'">Password</label>
     <input
       [type]="inputTypes[3]"
       [id]="inputAttrs[7]"
       [name]="inputAttrs[7]"
-      [class]="'input ' + (registerForm.get('password')?.dirty ? (registerForm.get('password')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+      [class]="'input input_padding ' + (registerForm.get('password')?.dirty ? (registerForm.get('password')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
       formControlName="password" />
 
     <app-form-error [form]="registerForm" [requiredError]="inputErrors[7]['required']" [patternError]="inputErrors[7]['pattern']" [inputName]="inputAttrs[7]" />
@@ -92,12 +92,12 @@
       [type]="inputTypes[3]"
       [id]="inputAttrs[8]"
       [name]="inputAttrs[8]"
-      [class]="'input ' + (registerForm.get('rePassword')?.dirty ? (registerForm.get('rePassword')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+      [class]="'input input_padding ' + (registerForm.get('rePassword')?.dirty ? (registerForm.get('rePassword')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
       formControlName="rePassword" />
 
     <app-form-error [form]="registerForm" [requiredError]="inputErrors[7]['required']" [patternError]="inputErrors[7]['pattern']" [inputName]="inputAttrs[8]" />
 
-    <div class="flex items-center mt-6">
+    <div class="flex items-center mt-6 mb-2">
       <p-checkbox
         formControlName="fullRegistration"
         [binary]="true"
@@ -112,6 +112,6 @@
 
   <div class="text-center w-full mt-8">
     <span class="block md:text-lg">Already have an account?</span>
-    <a routerLink="/login" class="block text-emerald-400 hover:cursor-pointer md:text-lg">Sign in</a>
+    <a routerLink="/login" class="inline-block text-emerald-400 hover:cursor-pointer md:text-lg">Sign in</a>
   </div>
 </div>
