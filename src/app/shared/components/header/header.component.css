@@ -1,0 +1,8 @@
+:host-context(.dark) ::ng-deep .p-breadcrumb {
+  background-color: #404040;
+  color: #FFF;
+}
+
+:host-context(.dark) ::ng-deep .p-splitbutton-menubutton {
+  color: #e7e5e4;
+}

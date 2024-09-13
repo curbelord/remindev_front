@@ -1,4 +1,4 @@
-<div class="mx-4 px-3 py-8 mt-8 rounded-3xl bg-stone-100 sm:mx-8 md:max-w-[500px] md:mx-auto md:p-12 lg:max-w-[600px] lg:p-20">
+<div class="mx-4 px-3 py-8 mt-8 rounded-3xl bg-stone-100 dark:bg-neutral-200 sm:mx-8 md:max-w-[500px] md:mx-auto md:p-12 lg:max-w-[600px] lg:p-20">
   <h1 class="text-2xl font-medium md:text-3xl mx-4 mb-10 md:mb-16">Register</h1>
   <form [formGroup]="registerForm" (ngSubmit)="sendRegisterForm($event)" method="post" action="" class="flex flex-wrap mx-4">
     @if (registerForm.get('fullRegistration')?.value) {
@@ -112,6 +112,6 @@
 
   <div class="text-center w-full mt-8">
     <span class="block md:text-lg">Already have an account?</span>
-    <a routerLink="/login" class="inline-block text-emerald-400 hover:cursor-pointer md:text-lg">Sign in</a>
+    <a routerLink="/login" class="inline-block text-emerald-400 dark:text-emerald-900 hover:cursor-pointer md:text-lg">Sign in</a>
   </div>
 </div>

@@ -4,5 +4,6 @@ export const theme = {
   extend: {},
   important: true
 };
+export const darkMode = 'selector';
 export const plugins = [];
 

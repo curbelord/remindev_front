@@ -67,7 +67,18 @@ export class HeaderComponent {
   changeTheme = (): void => {
     this.theme = this.theme.reverse();
 
-    // Add logical change
+    const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+    body.classList.toggle('dark');
+
+    this.logoToWhite();
+  }
+
+  logoToWhite = (): void => {
+    const svgCls3Elements: NodeListOf<SVGElement> = document.querySelectorAll('.cls-3');
+
+    svgCls3Elements.forEach(element => {
+      element.style.fill != "rgb(255, 255, 255)" ? element.style.fill = "#ffffff" : element.style.fill = "#1d1d1b";
+    });
   }
 
 
