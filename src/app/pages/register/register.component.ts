@@ -7,6 +7,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormErrorComponent } from "../../shared/components/form-error/form-error.component";
 import { isRePasswordTheSame } from '../../shared/validators/re-password';
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { UserIn } from '../../core/models/user-in';
+import { PartialUser } from '../../core/models/partial-user';
+import { FullUser } from '../../core/models/full-user';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +21,8 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class RegisterComponent implements OnInit {
+  private _authService = inject(AuthService);
+
   inputTypes: string[] = ["text", "date", "email", "password"];
   inputAttrs: string[] = ["name", "surname", "birthdate", "nick", "company", "occupation", "email", "password", "rePassword"];
 
@@ -95,11 +101,25 @@ export class RegisterComponent implements OnInit {
 
   sendRegisterForm = (event: Event): void => {
     if (this.registerForm.invalid){
-      event.preventDefault();
+      return;
     }
-    console.log(this.registerForm.invalid);
 
+    this.changeBirthdateFormat('yyyy-MM-dd');
+
+    let formValues: PartialUser | FullUser = this.registerForm.value;
+    this._authService.register(formValues).subscribe((data: UserIn) => {
+      this._authService.userId = data.userData.id;
+      this._authService.userNick = data.userData.nick;
+    });
+
+    this.changeBirthdateFormat('dd/MM/yyyy');
+  }
+
+  changeBirthdateFormat = (format: string): void => {
     let birthdate: Date = this.registerForm.get('birthdate')?.value;
-    console.log(this._datePipe.transform(birthdate, 'dd/MM/yyyy'));
+
+    this.registerForm.patchValue({
+      birthdate: this._datePipe.transform(birthdate, format)
+    });
   }
 }

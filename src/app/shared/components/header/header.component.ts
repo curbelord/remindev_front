@@ -5,7 +5,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { BadgeModule } from 'primeng/badge';
 import { RouterLink, RouterModule } from '@angular/router';
-import { UiService } from '../../../core/services/ui.service';
+import { UiService } from '../../../core/services/ui/ui.service';
 
 @Component({
   selector: 'app-header',

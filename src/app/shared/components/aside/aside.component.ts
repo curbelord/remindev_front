@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { UiService } from '../../../core/services/ui.service';
+import { UiService } from '../../../core/services/ui/ui.service';
 
 @Component({
   selector: 'app-aside',
