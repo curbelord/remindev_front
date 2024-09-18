@@ -1,9 +1,9 @@
 export interface InvalidNickEmailMsg {
   message: string,
-  userData: [
+  userData?: [
     {
-      nick: string,
-      email: string
+      nick?: string,
+      email?: string
     }
   ]
 }

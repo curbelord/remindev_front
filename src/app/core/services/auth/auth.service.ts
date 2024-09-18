@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { UserIn } from '../../models/user-in';
 import { PartialUser } from '../../models/partial-user';
 import { FullUser } from '../../models/full-user';
@@ -22,7 +22,11 @@ export class AuthService {
     return this._http.post<UserIn>(`${this.baseUrl}/register`, userData);
   }
 
-  public validate = (nick: string, email: string): Observable<string | InvalidNickEmailMsg> => {
-    return this._http.post<string | InvalidNickEmailMsg>(`${this.baseUrl}/register/validate`, {nick, email});
+  public validateNick = (nick: string): Observable<InvalidNickEmailMsg> => {
+    return this._http.post<InvalidNickEmailMsg>(`${this.baseUrl}/register/validate-nick`, {columnName: 'nick', columnData: nick});
+  }
+
+  public validateEmail = (email: string): Observable<InvalidNickEmailMsg> => {
+    return this._http.post<InvalidNickEmailMsg>(`${this.baseUrl}/register/validate-email`, {columnName: 'email', columnData: email});
   }
 }

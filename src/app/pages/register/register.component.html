@@ -41,10 +41,12 @@
         [type]="inputTypes[0]"
         [id]="inputAttrs[3]"
         [name]="inputAttrs[3]"
-        [class]="'input input_padding ' + (registerForm.get('nick')?.dirty ? (registerForm.get('nick')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('nick')?.dirty ? (registerForm.get('nick')?.invalid || !validNick ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="nick" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[3]['required']" [patternError]="inputErrors[3]['pattern']" [inputName]="inputAttrs[3]" />
+
+      <app-register-validation [registerForm]="registerForm" controlName="nick" [isValid]="validNick" [hasValidationChanges]="hasValidationChanges[0]"></app-register-validation>
 
       <label [for]="inputAttrs[4]" class="md:text-lg mt-6 mb-2 w-full">Company</label>
       <input
@@ -71,10 +73,12 @@
         [type]="inputTypes[2]"
         [id]="inputAttrs[6]"
         [name]="inputAttrs[6]"
-        [class]="'input input_padding ' + (registerForm.get('email')?.dirty ? (registerForm.get('email')?.invalid ? 'ring-red-400' : 'ring-emerald-400') : '')"
+        [class]="'input input_padding ' + (registerForm.get('email')?.dirty ? (registerForm.get('email')?.invalid || !validEmail ? 'ring-red-400' : 'ring-emerald-400') : '')"
         formControlName="email" />
 
       <app-form-error [form]="registerForm" [requiredError]="inputErrors[6]['required']" [patternError]="inputErrors[6]['pattern']" [inputName]="inputAttrs[6]" />
+
+      <app-register-validation class="w-full" [registerForm]="registerForm" controlName="email" [isValid]="validEmail" [hasValidationChanges]="hasValidationChanges[1]"></app-register-validation>
     }
 
     <label [for]="inputAttrs[7]" [class]="'md:text-lg ' + (registerForm.get('fullRegistration')?.value ? 'mt-6' : '') + ' mb-2 w-full'">Password</label>
