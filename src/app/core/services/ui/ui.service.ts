@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class UiService {
   constructor() { }
 
-  // Get device type with Express
-
   isMobile: boolean = true;
   menuOpen: boolean = !this.isMobile;
 }

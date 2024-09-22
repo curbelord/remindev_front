@@ -29,4 +29,8 @@ export class AuthService {
   public validateEmail = (email: string): Observable<InvalidNickEmailMsg> => {
     return this._http.post<InvalidNickEmailMsg>(`${this.baseUrl}/register/validate-email`, {columnName: 'email', columnData: email});
   }
+
+  public login = (userData: PartialUser): Observable<UserIn> => {
+    return this._http.post<UserIn>(`${this.baseUrl}/login`, userData);
+  }
 }

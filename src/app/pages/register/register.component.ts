@@ -145,7 +145,7 @@ export class RegisterComponent implements OnInit {
 
   validateNickOrEmail = (controlName: string) => {
     this.registerForm.get(controlName)?.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(750),
       distinctUntilChanged(),
       switchMap(value => {
         const control = this.registerForm.get(controlName);
@@ -173,7 +173,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  changeValidationValueNickOrEmail = (controlName: string, value: boolean) => {
+  changeValidationValueNickOrEmail = (controlName: string, value: boolean): void => {
     this.currentValidationAttempts++;
 
     if (controlName == "nick"){

@@ -1,3 +1,3 @@
 <div [id]="(controlName()) + '_valid'" [class]="'mt-6 p-2 ' + (registerForm().get(controlName())?.dirty && hasValidationChanges() && registerForm().get(controlName())?.valid ? 'block' : 'hidden') + ' ' + (isValid() && registerForm().get(controlName())?.valid ? 'text-green-500 bg-green-100' : 'text-red-500 bg-red-100') + ' rounded-lg w-full'">
-  <p>{{ controlName().toLocaleUpperCase().charAt(0) + controlName().slice(1, controlName().length) }} is {{ !isValid() ? 'in' : '' }}valid</p>
+  <p>{{ controlName().toLocaleUpperCase().charAt(0) + controlName().slice(1, controlName().length) }} is {{ !isValid() ? 'already in use' : 'valid' }}</p>
 </div>

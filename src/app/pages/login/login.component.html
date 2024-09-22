@@ -21,7 +21,7 @@
 
     <app-form-error [form]="loginForm" [requiredError]="errorMessages[1]['required']" [patternError]="errorMessages[1]['pattern']" [inputName]="inputTypes[1]" />
 
-    <button type="submit" id="sign_in" class="mt-6 py-2 px-2 outline-none text-white bg-emerald-500 focus:ring-2 ring-emerald-200 rounded-lg w-full md:text-lg">Sign in</button>
+    <button type="submit" id="sign_in" [disabled]="loginForm.invalid" class="mt-6 py-2 px-2 outline-none text-white bg-emerald-500 disabled:bg-emerald-300 focus:ring-2 ring-emerald-200 rounded-lg w-full md:text-lg">Sign in</button>
   </form>
 
   <div class="text-center w-full mt-8">
