@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class UiService {
   constructor() { }
 
-  isMobile: boolean = true;
-  menuOpen: boolean = !this.isMobile;
+  isMobile: boolean | undefined;
+  menuOpen: boolean | undefined;
+
+  darkMode: boolean | undefined;
 }

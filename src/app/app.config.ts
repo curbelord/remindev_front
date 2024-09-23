@@ -1,4 +1,5 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { InitService } from './core/services/init/init.service';
+import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 
@@ -12,6 +13,18 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(
       withInterceptors([errorInterceptor])
-    )
+    ),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (initService: InitService) => () => initService.getDeviceType(),
+      deps: [InitService],
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (initService: InitService) => () => initService.getThemeFromLocal(),
+      deps: [InitService],
+      multi: true
+    }
   ]
 };

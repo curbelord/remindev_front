@@ -1,5 +1,5 @@
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -14,24 +14,32 @@ import { UiService } from '../../../core/services/ui/ui.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   private _uiService = inject(UiService);
   originalMainWidth: number | null = null;
 
+  ngAfterViewInit(): void {
+    const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+    if (body.classList.contains('dark')) this.logoToWhite();
+  }
+
   manageMenu = (): void => {
-    let isMenuOpen: boolean = this._uiService.menuOpen;
+    let isMenuOpen: boolean | undefined = this._uiService.menuOpen;
     let asideMenu: HTMLElement = document.getElementsByTagName("aside")[0];
     let main: HTMLElement = document.getElementsByTagName("main")[0];
 
+    let asideStyles: CSSStyleDeclaration = window.getComputedStyle(asideMenu);
+    let asideMarginRight: number = parseInt(asideStyles.marginRight.slice(0, 2));
+
     if (isMenuOpen){
       asideMenu.classList.toggle("open_menu");
-      !this._uiService.isMobile ? this.moveMainToLeft(main, -asideMenu.clientWidth, asideMenu.clientWidth) : false;
-      this._uiService.isMobile ? setTimeout(this.sendMainToFrontOrBack, 800, main, 50) : false;
+      !this._uiService.isMobile ? this.moveMainToLeft(main, (-asideMenu.clientWidth + (-asideMarginRight)), asideMenu.clientWidth) : false;
+      this._uiService.isMobile ? setTimeout(this.sendMainToFrontOrBack, 800, main) : false;
 
     } else {
       asideMenu.classList.toggle("open_menu");
       !this._uiService.isMobile ? this.moveMainToLeft(main, 0, 0) : false;
-      this.sendMainToFrontOrBack(main, 50);
+      this.sendMainToFrontOrBack(main);
     }
 
     this._uiService.menuOpen = !this._uiService.menuOpen;
@@ -46,7 +54,7 @@ export class HeaderComponent {
     mainElement.style.width = `${this.originalMainWidth + asideWidth}px`;
   }
 
-  sendMainToFrontOrBack = (mainElement: HTMLElement, zIndex: number) => {
+  sendMainToFrontOrBack = (mainElement: HTMLElement) => {
     mainElement.classList.toggle("z-50");
   }
 
@@ -62,13 +70,19 @@ export class HeaderComponent {
 
   notifications: number = 0;
 
-  theme: string[] = ["sun", "moon"];
+  theme: string[] = this._uiService.darkMode ? ["moon", "sun"] : ["sun", "moon"];
 
   changeTheme = (): void => {
     this.theme = this.theme.reverse();
 
     const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
     body.classList.toggle('dark');
+
+    if (body.classList.contains('dark')){
+      localStorage.setItem('rd_theme', 'dark');
+    }else{
+      localStorage.setItem('rd_theme', 'light');
+    }
 
     this.logoToWhite();
   }

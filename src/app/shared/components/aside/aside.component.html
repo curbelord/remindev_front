@@ -1,19 +1,20 @@
-<aside class="absolute top-0 right-0 left-0 flex flex-wrap mx-4 bg-emerald-200 rounded-3xl p-4 dark:bg-emerald-900">
+<aside class="absolute top-0 right-0 left-0 flex flex-wrap mx-4 overflow-y-auto !h-[70vh] lg:!h-[89vh] bg-emerald-200 rounded-3xl p-4 dark:bg-emerald-900">
   <ol class="w-full self-start">
     @for (button of menuButtons; track button.id) {
       <li>
-        <!-- <button
+        <button
           pButton
           type="button"
+          [routerLink]="button.route"
           [class]="'text-white bg-emerald-500 ' + (button.id == 1 ? 'mt-0' : 'mt-3') + ' w-full rounded-md px-3 py-2'">
           {{ button.name }}
-        </button> -->
-        <a [routerLink]="button.route" [class]="'block text-white bg-emerald-500 ' + (button.id == 1 ? 'mt-0' : 'mt-3') + ' w-full rounded-md px-3 py-2 hover:cursor-pointer'">{{ button.name }}</a>
+        </button>
+        <!-- <a [routerLink]="button.route" [class]="'block text-white bg-emerald-500 ' + (button.id == 1 ? 'mt-0' : 'mt-3') + ' w-full rounded-md px-3 py-2 hover:cursor-pointer'">{{ button.name }}</a> -->
       </li>
     }
   </ol>
 
-  <div class="flex self-end">
+  <div class="flex self-end mt-10">
     <a href="https://github.com/curbelord" target="_blank">
       <img src="/assets/img/github.svg" alt="Github logo with link to @curbelord" width="40px" height="40px">
     </a>
