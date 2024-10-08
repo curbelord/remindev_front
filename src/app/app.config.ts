@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: (initService: InitService) => () => initService.getThemeFromLocal(),
+      useFactory: (initService: InitService) => () => initService.changeThemeInBody(),
       deps: [InitService],
       multi: true
     }

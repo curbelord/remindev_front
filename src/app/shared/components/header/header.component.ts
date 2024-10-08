@@ -1,5 +1,5 @@
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -14,13 +14,31 @@ import { UiService } from '../../../core/services/ui/ui.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private _uiService = inject(UiService);
   originalMainWidth: number | null = null;
 
+  body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+
+  actualTheme: boolean = this._uiService.darkMode;
+
+  ngOnInit(): void {
+    let darkModeSubscriber = this._uiService.darkModeState.subscribe({
+      next: (state: boolean) => {
+        this.actualTheme = state;
+      },
+      complete: () => {
+        darkModeSubscriber.unsubscribe();
+      }
+    });
+  }
+
   ngAfterViewInit(): void {
-    const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
-    if (body.classList.contains('dark')) this.logoToWhite();
+    if (this.body.classList.contains('dark')) this.logoToWhite();
+  }
+
+  ngOnDestroy(): void {
+    this._uiService.unsubscribeDarkMode();
   }
 
   manageMenu = (): void => {
@@ -62,29 +80,27 @@ export class HeaderComponent implements AfterViewInit {
     return this.avatarItems.slice(0, 1).concat(this.avatarItems.slice(3, 4));
   }
 
-  // Add "command" parameter to call a function to logout
-
-  readonly avatarItems: MenuItem[] = [{label: "Profile"}, {label: "Notifications"}, {label: `Theme: ${""}`}, {label: "Logout"}];
+  readonly avatarItems: MenuItem[] = [{label: "Profile"}, {label: "Notifications"}, {label: `Theme: ${this.body.classList.contains('dark') ? 'dark' : 'light'}`, command: () => this.changeTheme()}, {label: "Logout"}];
 
   breadCrumbItems: MenuItem[] | undefined;
 
   notifications: number = 0;
 
-  theme: string[] = this._uiService.darkMode ? ["moon", "sun"] : ["sun", "moon"];
+  themeIcons: string[] = this.actualTheme ? ["moon", "sun"] : ["sun", "moon"];
 
   changeTheme = (): void => {
-    this.theme = this.theme.reverse();
+    this.themeIcons = this.themeIcons.reverse();
+    this.body.classList.toggle('dark');
+    this._uiService.toggleDarkModeState();
 
-    const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
-    body.classList.toggle('dark');
-
-    if (body.classList.contains('dark')){
+    if (this.body.classList.contains('dark')){
       localStorage.setItem('rd_theme', 'dark');
     }else{
       localStorage.setItem('rd_theme', 'light');
     }
 
     this.logoToWhite();
+    this.avatarItems[2].label = `Theme: ${this.body.classList.contains('dark') ? 'dark' : 'light'}`;
   }
 
   logoToWhite = (): void => {

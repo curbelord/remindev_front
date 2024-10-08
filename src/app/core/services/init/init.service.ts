@@ -22,18 +22,6 @@ export class InitService {
     }
   }
 
-  public getThemeFromLocal = (): void => {
-    let theme: string | null = localStorage.getItem("rd_theme");
-
-    if (theme === null || theme === "light"){
-      this._uiService.darkMode = false;
-    }else{
-      this._uiService.darkMode = true;
-    }
-
-    this.changeThemeInBody();
-  }
-
   public changeThemeInBody = (): void => {
     const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 

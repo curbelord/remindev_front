@@ -32,7 +32,7 @@
   </div>
 
   <div class="flex justify-end items-center w-6/12 xl:w-3/12">
-    <i [class]="'pi pi-' + theme[0] + ' text-gray-500 dark:text-stone-200 text-2xl mr-4 hover:cursor-pointer !hidden lg:!block'" (click)="changeTheme()"></i>
+    <i [class]="'pi pi-' + themeIcons[0] + ' text-gray-500 dark:text-stone-200 text-2xl mr-4 hover:cursor-pointer !hidden lg:!block'" (click)="changeTheme()"></i>
     @if (notifications > 0) {
       <a routerLink="">
         <i class="pi pi-bell text-gray-500 text-2xl mr-6 dark:text-stone-200 hover:cursor-pointer !hidden lg:!block" pBadge [value]="notifications" severity="danger"></i>

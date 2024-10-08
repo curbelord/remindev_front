@@ -1,0 +1,3 @@
+::ng-deep .p-calendar {
+  @apply w-full md:h-80 lg:h-96;
+}
