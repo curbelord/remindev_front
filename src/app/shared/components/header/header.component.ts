@@ -6,6 +6,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { BadgeModule } from 'primeng/badge';
 import { RouterLink, RouterModule } from '@angular/router';
 import { UiService } from '../../../core/services/ui/ui.service';
+import { Subscription } from 'rxjs';
+import { AdminLayoutComponent } from '../../layouts/admin-layout/admin-layout.component';
 
 @Component({
   selector: 'app-header',
@@ -16,19 +18,25 @@ import { UiService } from '../../../core/services/ui/ui.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private _uiService = inject(UiService);
-  originalMainWidth: number | null = null;
 
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
+  darkModeSubscription!: Subscription;
   actualTheme: boolean = this._uiService.darkMode;
 
+  menuOpenSubscription!: Subscription;
+  actualMenuState: boolean = this._uiService.menuOpen;
+
   ngOnInit(): void {
-    let darkModeSubscriber = this._uiService.darkModeState.subscribe({
+    this.darkModeSubscription = this._uiService.darkModeState.subscribe({
       next: (state: boolean) => {
         this.actualTheme = state;
-      },
-      complete: () => {
-        darkModeSubscriber.unsubscribe();
+      }
+    });
+
+    this.menuOpenSubscription = this._uiService.menuOpenState.subscribe({
+      next: (state: boolean) => {
+        this.actualMenuState = state;
       }
     });
   }
@@ -38,38 +46,38 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._uiService.unsubscribeDarkMode();
+    this.darkModeSubscription.unsubscribe();
+    this.menuOpenSubscription.unsubscribe();
   }
 
   manageMenu = (): void => {
-    let isMenuOpen: boolean | undefined = this._uiService.menuOpen;
     let asideMenu: HTMLElement = document.getElementsByTagName("aside")[0];
     let main: HTMLElement = document.getElementsByTagName("main")[0];
 
     let asideStyles: CSSStyleDeclaration = window.getComputedStyle(asideMenu);
     let asideMarginRight: number = parseInt(asideStyles.marginRight.slice(0, 2));
 
-    if (isMenuOpen){
-      asideMenu.classList.toggle("open_menu");
+    asideMenu.classList.toggle("open_menu");
+    let openOrClosed: string = "";
+
+    if (this.actualMenuState){
       !this._uiService.isMobile ? this.moveMainToLeft(main, (-asideMenu.clientWidth + (-asideMarginRight)), asideMenu.clientWidth) : false;
       this._uiService.isMobile ? setTimeout(this.sendMainToFrontOrBack, 800, main) : false;
+      openOrClosed = "closed";
 
     } else {
-      asideMenu.classList.toggle("open_menu");
       !this._uiService.isMobile ? this.moveMainToLeft(main, 0, 0) : false;
       this.sendMainToFrontOrBack(main);
+      openOrClosed = "open";
     }
 
-    this._uiService.menuOpen = !this._uiService.menuOpen;
+    localStorage.setItem('rd_menu', openOrClosed);
+    this._uiService.toggleMenuOpenState();
   }
 
   moveMainToLeft = (mainElement: HTMLElement, pxToTranslate: number, asideWidth: number): void => {
     mainElement.style.transform = `translateX(${pxToTranslate}px)`;
-
-    if (this.originalMainWidth === null) {
-      this.originalMainWidth = mainElement.clientWidth;
-    }
-    mainElement.style.width = `${this.originalMainWidth + asideWidth}px`;
+    mainElement.style.width = `${AdminLayoutComponent.originalMainWidth + asideWidth}px`;
   }
 
   sendMainToFrontOrBack = (mainElement: HTMLElement) => {

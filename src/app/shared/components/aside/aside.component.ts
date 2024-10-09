@@ -16,11 +16,21 @@ export class AsideComponent implements OnInit {
   readonly menuButtons: {id: number, name: string, route: string}[] = [{id: 1, name: "Dashboard", route: "/dashboard"}, {id: 2, name: "Projects", route: "/projects"}, {id: 3, name: "Teams", route: "/teams"}, {id: 4, name: "Tasks", route: "/tasks"}, {id: 5, name: "Profile", route: "/profile"}, {id: 6, name: "Settings", route: "/settings"}];
 
   ngOnInit(): void {
-    this.openMenuIfPc();
+    this.openMenuIfOpenInLocal();
   }
 
-  openMenuIfPc = () => {
+  openMenuIfOpenInLocal = () => {
     let asideMenu: HTMLElement = document.getElementsByTagName("aside")[0];
-    !this._uiService.isMobile ? asideMenu.classList.add("open_menu") : false;
+
+    if (localStorage.getItem('rd_menu') !== null && localStorage.getItem('rd_menu') === 'open'){
+      asideMenu.style.transition = "none";
+      asideMenu.classList.add("open_menu");
+      setTimeout(() => {
+        asideMenu.style.transition = "transform 800ms cubic-bezier(.8, 0, .33, 1)";
+      }, 0);
+
+      let main: HTMLElement = document.getElementsByTagName("main")[0];
+      main.classList.toggle("z-50");
+    }
   }
 }

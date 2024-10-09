@@ -16,12 +16,6 @@ export const appConfig: ApplicationConfig = {
     ),
     {
       provide: APP_INITIALIZER,
-      useFactory: (initService: InitService) => () => initService.getDeviceType(),
-      deps: [InitService],
-      multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
       useFactory: (initService: InitService) => () => initService.changeThemeInBody(),
       deps: [InitService],
       multi: true
